@@ -15,10 +15,8 @@ app.use("/auth", auth);
 app.use("/movies", movies);
 app.use("/genres", genres);
 
-const port = process.env.PORT || 3001;
-
 conn.sync({ force: false }).then(() => {
-  app.listen(port, () => {
-    console.log(`Running on ${port}`);
+  app.listen(process.env.PORT, () => {
+    console.log(`Running on ${process.env.PORT}`);
   });
 });
