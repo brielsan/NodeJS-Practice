@@ -1,47 +1,38 @@
+require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const CharactersModel = require("./models/Character.js");
-const MovieorserieModel = require("./models/Movieorserie.js");
+const MovieModel = require("./models/Movie.js");
 const GenreModel = require("./models/Genre.js");
 const UserModel = require("./models/User.js");
-require("dotenv").config();
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/disney`,
   {
-    logging: false, // set to console.log to see the raw SQL queries
-    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+    logging: false,
+    native: false,
   }
 );
 
-const modelDefiners = [
-  CharactersModel,
-  MovieorserieModel,
-  GenreModel,
-  UserModel,
-];
+const modelDefiners = [CharactersModel, MovieModel, GenreModel, UserModel];
 
-modelDefiners.forEach((model) => model(sequelize)); // Se convierten los modelos en modelos de sequelize
+modelDefiners.forEach((model) => model(sequelize));
 
-let entries = Object.entries(sequelize.models); // Se obtienen los modelos de sequelize
+let entries = Object.entries(sequelize.models);
 
 let capsEntries = entries.map((entry) => [
-  // Se convierte a mayusculas para prevenir errores
   entry[0][0].toUpperCase() + entry[0].slice(1),
   entry[1],
 ]);
 
-sequelize.models = Object.fromEntries(capsEntries); // Definimos los modelos de sequelize
+sequelize.models = Object.fromEntries(capsEntries);
 
-const { Character, Movieorserie, Genre, User } = sequelize.models; // Se obtienen los modelos de sequelize
+const { Character, Movie, Genre } = sequelize.models;
 
-console.log(sequelize.models);
-
-// Se crean las relaciones
-Character.belongsToMany(Movieorserie, { through: "Character_MovieOrSerie" });
-Movieorserie.belongsToMany(Character, { through: "Character_MovieOrSerie" });
-Movieorserie.belongsToMany(Genre, { through: "MovieOrSerie_Genre" });
-Genre.belongsToMany(Movieorserie, { through: "MovieOrSerie_Genre" });
+Character.belongsToMany(Movie, { through: "Character_Movie" });
+Movie.belongsToMany(Character, { through: "Character_Movie" });
+Movie.belongsToMany(Genre, { through: "Movie_Genre" });
+Genre.belongsToMany(Movie, { through: "Movie_Genre" });
 
 module.exports = {
   ...sequelize.models,

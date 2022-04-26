@@ -1,30 +1,48 @@
 const express = require("express");
 const router = express.Router();
-const { Character, MovieOrSerie } = require("../db.js");
+const getCharacter = require("../functions/Character/characterGet.js");
+const postCharacter = require("../functions/Character/characterPost.js");
+const putCharacter = require("../functions/Character/characterPut.js");
+const deleteCharacter = require("../functions/Character/characterDelete.js");
 
 router.get("/", async (req, res) => {
-  let characters = await Character.findAll({ attributes: ["image", "name"] });
-  res.json(characters);
+  const { name, age, movies } = req.query;
+  if (name) {
+    const { response, status } = await getCharacter.ByName(name);
+    return res.status(status).json(response);
+  } else if (age) {
+    const { response, status } = await getCharacter.ByAge(age);
+    return res.status(status).json(response);
+  } else if (movies) {
+    const { response, status } = await getCharacter.ByMovies(movies);
+    return res.status(status).json(response);
+  } else {
+    const { response, status } = await getCharacter.AllCharacters();
+    returnres.status(status).json(response);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const { response, status } = await getCharacter.Detail(req.params.id);
+  return res.status(status).json(response);
 });
 
 router.post("/", async (req, res) => {
-  try {
-    await Character.create(req.body);
-    res.json({ message: "Character created" });
-  } catch (error) {
-    res.status(500).json(error);
-  }
+  const { response, status } = await postCharacter.newCharacter(req.body);
+  return res.status(status).json(response);
 });
 
 router.put("/:id", async (req, res) => {
-  try {
-    let character = await Character.findByPk(req.params.id);
-    console.log(character);
-    await character.update(req.body);
-    res.json({ message: "Character updated" });
-  } catch (error) {
-    res.status(500).json(error);
-  }
+  const { response, status } = await putCharacter.Update(
+    req.params.id,
+    req.body
+  );
+  return res.status(status).json(response);
+});
+
+router.delete("/:id", async (req, res) => {
+  const { response, status } = await deleteCharacter.Delete(req.params.id);
+  return res.status(status).json(response);
 });
 
 module.exports = router;
