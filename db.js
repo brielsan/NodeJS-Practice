@@ -4,15 +4,12 @@ const CharactersModel = require("./models/Character.js");
 const MovieModel = require("./models/Movie.js");
 const GenreModel = require("./models/Genre.js");
 const UserModel = require("./models/User.js");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DATABASE_URL } = process.env;
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/disney`,
-  {
-    logging: false,
-    native: false,
-  }
-);
+const sequelize = new Sequelize(`${DATABASE_URL}`, {
+  logging: false,
+  native: false,
+});
 
 const modelDefiners = [CharactersModel, MovieModel, GenreModel, UserModel];
 
