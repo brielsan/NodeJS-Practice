@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
     return res.status(status).json(response);
   } else {
     const { response, status } = await getCharacter.AllCharacters();
-    returnres.status(status).json(response);
+    return res.status(status).json(response);
   }
 });
 
