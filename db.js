@@ -6,7 +6,7 @@ const GenreModel = require("./models/Genre.js");
 const UserModel = require("./models/User.js");
 const { DATABASE_URL } = process.env;
 
-const sequelize = new Sequelize(`${DATABASE_URL}`, {
+const sequelize = new Sequelize(DATABASE_URL, {
   logging: false,
   native: false,
 });
