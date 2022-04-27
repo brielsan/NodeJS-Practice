@@ -11,7 +11,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { response, status } = await postGenre.newGenre(req.body);
+  const { name, image } = req.body;
+  const { response, status } = await postGenre.newGenre(name, image);
   return res.status(status).json(response);
 });
 

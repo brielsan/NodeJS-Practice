@@ -1,6 +1,6 @@
 const { Genre } = require("../../db.js");
 
-async function newGenre({ name, image }) {
+async function newGenre(name, image) {
   if (!name || !image)
     return {
       response: "Please enter all the necessary fields",
