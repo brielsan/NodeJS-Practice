@@ -6,8 +6,13 @@ async function newGenre({ name, image }) {
       response: "Please enter all the necessary fields",
       status: 500,
     };
+
+  const genre = {
+    name: name,
+    image: image,
+  };
   try {
-    await Genre.create(name, image);
+    await Genre.create(genre);
     return { response: "Genre created", status: 200 };
   } catch (error) {
     return { response: error, status: 500 };
