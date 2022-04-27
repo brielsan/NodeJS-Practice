@@ -16,7 +16,7 @@ app.use("/movies", movies);
 app.use("/genres", genres);
 
 conn.sync({ force: false }).then(() => {
-  app.listen(process.env.PORT || 3001, () => {
-    console.log(`Running on ${process.env.PORT || 3001}`);
+  app.listen(process.env.PORT, () => {
+    console.log(`Running on ${process.env.PORT}`);
   });
 });
