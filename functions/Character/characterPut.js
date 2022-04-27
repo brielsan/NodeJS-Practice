@@ -1,6 +1,14 @@
 const { Character } = require("../../db.js");
 
 async function Update(id, body) {
+  const { name, image } = body;
+
+  if (!name && !image) {
+    return {
+      response: "Please enter all the necessary fields",
+      status: 500,
+    };
+  }
   try {
     let character = await Character.findByPk(id);
     await character.update(body);

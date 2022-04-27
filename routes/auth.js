@@ -10,6 +10,12 @@ sgMail.setApiKey(`${SENDGRID_API_KEY}`);
 
 router.post("/register", async (req, res) => {
   const { name, email } = req.body;
+  if (!name || !email) {
+    return res.status(500).json({
+      response: "Please enter all the necessary fields",
+      status: 500,
+    });
+  }
   let password = bcrypt.hashSync(req.body.password, 10);
   try {
     const user = await User.create({ name, email, password });
@@ -39,6 +45,12 @@ router.post("/register", async (req, res) => {
 
 router.get("/login", async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(500).json({
+      response: "Please enter all the necessary fields",
+      status: 500,
+    });
+  }
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {

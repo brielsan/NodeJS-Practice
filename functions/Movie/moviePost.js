@@ -8,7 +8,20 @@ async function newMovie({ image, title, date, calification, genre }) {
     calification,
   };
 
+  if (!image || !title || !date || !calification || !genre)
+    return {
+      response: "Please enter all the necessary fields",
+      status: 500,
+    };
+
   const genreInDB = await Genre.findAll({ where: { name: genre } });
+
+  if (genreInDB.length === 0) {
+    return {
+      response: "Genre not found",
+      status: 404,
+    };
+  }
 
   try {
     let movie = await Movie.create(newMovie);
