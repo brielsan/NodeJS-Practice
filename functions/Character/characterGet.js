@@ -10,7 +10,9 @@ const responseFunction = (r) => {
 
 async function AllCharacters() {
   try {
-    const response = await Character.findAll({ attributes: ["image", "name"] });
+    const response = await Character.findAll({
+      attributes: ["id", "image", "name"],
+    });
     return responseFunction(response);
   } catch (error) {
     return notFound;
