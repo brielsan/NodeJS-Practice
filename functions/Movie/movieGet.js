@@ -120,6 +120,7 @@ async function Detail(id) {
         },
       ],
     });
+    if (!response) return notFound;
     return responseFunction(response);
   } catch (error) {
     return notFound;
