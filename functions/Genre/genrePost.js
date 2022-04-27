@@ -6,7 +6,6 @@ async function newGenre({ name, image }) {
       response: "Please enter all the necessary fields",
       status: 500,
     };
-
   const genre = {
     name: name,
     image: image,

@@ -7,7 +7,6 @@ async function newCharacter({ image, name, age, weight, history, movies }) {
       status: 500,
     };
   }
-
   const newCharacter = {
     image,
     name,

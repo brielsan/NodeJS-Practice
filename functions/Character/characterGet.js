@@ -1,6 +1,5 @@
 const { Op } = require("sequelize");
 const { Character, Movie } = require("../../db.js");
-
 const notFound = { response: { message: "Character not found" }, status: 404 };
 
 const responseFunction = (r) => {

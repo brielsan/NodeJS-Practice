@@ -1,5 +1,4 @@
 const { Genre } = require("../../db.js");
-
 const notFound = { response: { message: "Genre not found" }, status: 404 };
 
 const responseFunction = (r) => {

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const getCharacter = require("../functions/Character/characterGet.js");
 const postCharacter = require("../functions/Character/characterPost.js");
 const putCharacter = require("../functions/Character/characterPut.js");

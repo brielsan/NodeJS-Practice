@@ -15,7 +15,6 @@ async function newMovie({ image, title, date, calification, genre }) {
     };
 
   const genreInDB = await Genre.findAll({ where: { name: genre } });
-
   if (genreInDB.length === 0) {
     return {
       response: "Genre not found",

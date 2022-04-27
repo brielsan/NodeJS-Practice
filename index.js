@@ -4,7 +4,6 @@ const characters = require("./routes/characters.js");
 const auth = require("./routes/auth.js");
 const movies = require("./routes/movies.js");
 const genres = require("./routes/genres.js");
-
 require("./db.js");
 const { conn } = require("./db.js");
 

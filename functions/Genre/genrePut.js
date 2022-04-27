@@ -2,7 +2,6 @@ const { Genre } = require("../../db.js");
 
 async function Update(id, body) {
   const { name, image } = body;
-
   if (!name && !image) {
     return {
       response: "Please enter all the necessary fields",

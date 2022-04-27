@@ -6,6 +6,7 @@ const { User } = require("../db.js");
 const { SECRET_KEY, USER_EXPIRES_IN, SENDGRID_API_KEY, SENDGRID_EMAIL } =
   process.env;
 const sgMail = require("@sendgrid/mail");
+
 sgMail.setApiKey(`${SENDGRID_API_KEY}`);
 
 router.post("/register", async (req, res) => {

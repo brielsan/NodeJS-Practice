@@ -6,6 +6,7 @@ async function Delete(id) {
       response: "Please enter all the necessary fields",
       status: 500,
     };
+
   try {
     let character = await Character.findByPk(id);
     await character.destroy();

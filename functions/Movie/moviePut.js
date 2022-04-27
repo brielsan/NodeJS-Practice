@@ -9,6 +9,7 @@ async function Update(id, body) {
       status: 500,
     };
   }
+
   try {
     let movie = await Movie.findByPk(id);
     if (!movie) {
