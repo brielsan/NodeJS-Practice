@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const { response, status } = await getMovie.byId(req.params.id);
+  const { response, status } = await getMovie.Detail(req.params.id);
   return res.status(status).json(response);
 });
 
