@@ -116,9 +116,9 @@ async function Detail(id) {
         },
       ],
     });
-    return responseFunction(response);
+    return { response: response, status: 200 };
   } catch (error) {
-    return notFound;
+    return { response: error, status: 500 };
   }
 }
 
