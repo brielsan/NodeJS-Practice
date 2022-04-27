@@ -1,5 +1,5 @@
 # NodeJS Practice ALKEMY
-Movies/Series Backend
+Movies/Series Backend. NodeJS, Express, Sequelize.
 
 # Deploy in:
 https://nodejs-test-gabriel.herokuapp.com/
