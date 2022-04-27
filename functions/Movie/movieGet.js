@@ -86,7 +86,6 @@ async function ByGenre(genre) {
 }
 
 async function ByOrder(order) {
-  if (!order) return notFound;
   try {
     const orderAllMovies = await Movie.findAll({
       attributes: {
@@ -102,7 +101,6 @@ async function ByOrder(order) {
       },
       order: [["title", `${order.toUpperCase()}`]],
     });
-
     return responseFunction(orderAllMovies);
   } catch (error) {
     return notFound;
