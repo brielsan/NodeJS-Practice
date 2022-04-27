@@ -118,7 +118,8 @@ async function Detail(id) {
         },
       ],
     });
-    if (response == null) return notFound;
+    if (response == null)
+      return { response: { message: "Movie not found" }, status: 404 };
     return responseFunction(response);
   } catch (error) {
     return notFound;
