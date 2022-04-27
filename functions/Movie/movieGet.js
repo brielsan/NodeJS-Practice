@@ -31,6 +31,7 @@ async function allMovies() {
 }
 
 async function ByName(name) {
+  if (!name) return notFound;
   try {
     const movieWithName = await Movie.findAll({
       where: {
@@ -57,6 +58,7 @@ async function ByName(name) {
 }
 
 async function ByGenre(genre) {
+  if (!genre) return notFound;
   try {
     let movieWithGenre = await Movie.findAll({
       include: {
@@ -84,6 +86,7 @@ async function ByGenre(genre) {
 }
 
 async function ByOrder(order) {
+  if (!order) return notFound;
   try {
     const orderAllMovies = await Movie.findAll({
       attributes: {
@@ -107,6 +110,7 @@ async function ByOrder(order) {
 }
 
 async function Detail(id) {
+  if (!id) return notFound;
   try {
     const response = await Movie.findByPk(id, {
       include: [
