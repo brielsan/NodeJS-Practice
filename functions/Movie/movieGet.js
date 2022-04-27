@@ -118,7 +118,7 @@ async function Detail(id) {
         },
       ],
     });
-    if (!response) return notFound;
+    if (response == null) return notFound;
     return responseFunction(response);
   } catch (error) {
     return notFound;

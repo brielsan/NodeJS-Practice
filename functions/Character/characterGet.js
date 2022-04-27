@@ -69,6 +69,7 @@ async function Detail(id) {
         as: "moviesorseries",
       },
     });
+    if (response == null) return notFound;
     return responseFunction(response);
   } catch (error) {
     return notFound;
