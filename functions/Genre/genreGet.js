@@ -16,4 +16,13 @@ async function allGenres() {
   }
 }
 
-module.exports = { allGenres };
+async function Detail(id) {
+  try {
+    const response = await Genre.findByPk(id);
+    return responseFunction(response);
+  } catch (error) {
+    return notFound;
+  }
+}
+
+module.exports = { allGenres, Detail };

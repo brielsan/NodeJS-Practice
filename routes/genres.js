@@ -10,6 +10,11 @@ router.get("/", async (req, res) => {
   return res.status(status).json(response);
 });
 
+router.get("/:id", async (req, res) => {
+  const { response, status } = await getGenre.Detail(req.params.id);
+  return res.status(status).json(response);
+});
+
 router.post("/", async (req, res) => {
   const { response, status } = await postGenre.newGenre(req.body);
   return res.status(status).json(response);
