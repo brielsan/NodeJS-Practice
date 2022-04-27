@@ -66,10 +66,9 @@ async function Detail(id) {
         as: "moviesorseries",
       },
     });
-    if (response === null) return notFound;
     return { response: response, status: 200 };
   } catch (error) {
-    return { response: error, status: 500 };
+    return notFound;
   }
 }
 
