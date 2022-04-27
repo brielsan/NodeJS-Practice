@@ -18,7 +18,6 @@ async function AllCharacters() {
 }
 
 async function ByName(name) {
-  if (!name) return notFound;
   try {
     const response = await Character.findAll({
       where: {
@@ -44,7 +43,6 @@ async function ByAge(age) {
 }
 
 async function ByMovies(movies) {
-  if (!movies) return notFound;
   try {
     const response = await Movie.findByPk(movies, {
       include: [
@@ -61,7 +59,6 @@ async function ByMovies(movies) {
 }
 
 async function Detail(id) {
-  if (!id) return notFound;
   try {
     const response = await Character.findByPk(id, {
       includes: {
