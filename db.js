@@ -17,7 +17,6 @@ const sequelize = new Sequelize(DATABASE_URL, {
 });
 
 const modelDefiners = [CharactersModel, MovieModel, GenreModel, UserModel];
-
 modelDefiners.forEach((model) => model(sequelize));
 
 let entries = Object.entries(sequelize.models);
